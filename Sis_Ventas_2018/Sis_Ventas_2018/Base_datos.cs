@@ -13,7 +13,7 @@ namespace Sis_Ventas_2018
     {
         /*
          //// => Autor :  Daniel25A
-        ////  => Funciones: Esta clase es base en la mayoria de las funciones del Sistema de ventas
+        ////  => Funciones: Esta clase es base en la mayoria de las funciones de bases de datos del Sistema de ventas
        ////   => Nombre real del Autor y Programador: Oscar Daniel Gomez Reyes (Daniel25A)
         */
         SqlConnection cn;
