@@ -1,0 +1,12 @@
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\bin\Debug\Sistema de Gastronomia 2018.exe.config
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\bin\Debug\Sistema de Gastronomia 2018.exe
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\bin\Debug\Sistema de Gastronomia 2018.pdb
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema de Gastronomia 2018.csprojResolveAssemblyReference.cache
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.Properties.Resources.resources
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema de Gastronomia 2018.csproj.GenerateResource.Cache
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema de Gastronomia 2018.exe
+c:\users\oscar gomez\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema de Gastronomia 2018.pdb
+C:\Users\OSCAR GOMEZ\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.form_inicio.resources
+C:\Users\OSCAR GOMEZ\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.form_pedidos.resources
+C:\Users\OSCAR GOMEZ\documents\visual studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\bin\Debug\System.Data.SQLite.dll
+C:\Users\OSCAR GOMEZ\Documents\Visual Studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\bin\Debug\MetroFramework.dll
