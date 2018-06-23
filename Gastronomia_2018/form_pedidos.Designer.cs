@@ -253,6 +253,7 @@
             this.grilla.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grilla.Size = new System.Drawing.Size(640, 330);
             this.grilla.TabIndex = 3;
+            this.grilla.DoubleClick += new System.EventHandler(this.grilla_DoubleClick);
             // 
             // Producto
             // 
@@ -586,7 +587,7 @@
             this.lbltotal.AutoSize = true;
             this.lbltotal.Font = new System.Drawing.Font("Digiface", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltotal.ForeColor = System.Drawing.Color.Yellow;
-            this.lbltotal.Location = new System.Drawing.Point(141, 4);
+            this.lbltotal.Location = new System.Drawing.Point(81, 5);
             this.lbltotal.Name = "lbltotal";
             this.lbltotal.Size = new System.Drawing.Size(38, 45);
             this.lbltotal.TabIndex = 0;
@@ -662,7 +663,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label lbltotal;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lbltotalticket;
@@ -685,5 +685,6 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label lblcli;
         private System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Label lbltotal;
     }
 }

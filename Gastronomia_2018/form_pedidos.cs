@@ -70,8 +70,13 @@ namespace Sistema_de_Gastronomia_2018
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                sistema.producs.cargargrilla(grilla, txtcodigo.Text);
+                sistema.producs.cargargrilla(grilla, txtcodigo,lbltotal);
             }
+        }
+
+        private void grilla_DoubleClick(object sender, EventArgs e)
+        {
+            sistema.grilla.borrar_producto(grilla, lbltotal);
         }
     }
 }
