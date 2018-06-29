@@ -31,12 +31,15 @@ namespace Sistema_de_Gastronomia_2018
             lblnumventa.Text = string.Empty;
             lblultimovuelto.Text = "$0.00";
             lblcli.Text = "Sin Asignar...";
+            MaximizeBox = false;
+            lblcant.Visible = false;
         }
 
         private void txtcin_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
+             
                 sistema.basedatos.cin_cliente = txtcin.Text;
                 if (sistema.basedatos.consulta())
                 {
@@ -68,15 +71,96 @@ namespace Sistema_de_Gastronomia_2018
 
         private void txtcodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
+            int contador = 0;
+            if (txtcodigo.Text=="000")
+            {
+               // MessageBox.Show(":D");
+                sistema.iva.frm_cantidad_funcion(lblcant);
+                txtcodigo.Text = string.Empty;
+                return;
+            }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                sistema.producs.cargargrilla(grilla, txtcodigo,lbltotal);
+                bool tiene_signomas = false;
+
+                foreach (var x in txtcodigo.Text)
+                {
+                    if (x.ToString() == "+")
+                    {
+                        contador++;
+                        tiene_signomas = true;
+                    }
+                }
+                if (contador >= 3)
+                {
+                    MessageBox.Show("Error de Sintaxis \n ===Use=== \n \"Descripcion\"+\"Cantidad\"+\"Precio Unitario\"(Sin las Comillas :D)", "Atencion Usuario",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (tiene_signomas)
+                {
+                    if (!sistema.funcion_textbox.existe_codigo_88())
+                    {
+                        MessageBox.Show("Registro el codigo 888 en su sistema para utilizar esta funcion", "Atencion Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    sistema.funcion_textbox.paso_manual(grilla, txtcodigo,lbltotal,lbltotalticket);
+                    return;
+                }
+              //  sistema.grilla.verificar(grilla, txtcodigo);
+                sistema.producs.cargargrilla(grilla, txtcodigo,lbltotal,lbltotalticket,lbliva,lblcant);
+                
             }
         }
 
         private void grilla_DoubleClick(object sender, EventArgs e)
         {
-            sistema.grilla.borrar_producto(grilla, lbltotal);
+            sistema.grilla.borrar_producto(grilla, lbltotal,txtcodigo,lbltotalticket,lbliva);
+           
+        }
+
+        private void txtcodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grilla_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+
+            if (e.KeyChar == Convert.ToChar(Keys.Tab))
+                {
+                    sistema.grilla.borrar_producto(grilla, lbltotal, txtcodigo, lbltotalticket, lbliva);
+                 }
+           
+           
+        }
+
+        private void grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            grilla.Focus();
+        }
+
+        private void grilla_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void form_pedidos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            grilla.Rows.Clear();
+            recursos.total_venta = 0;
+            recursos.iva_venta = 0;
+            productos.contador = 0;
+            txtcelular.Text = string.Empty;
+            txtcin.Text = string.Empty;
+            txtcin.Enabled = true;
+            txtnombre.Text = string.Empty;
+            txtcin.Focus();
         }
     }
 }
