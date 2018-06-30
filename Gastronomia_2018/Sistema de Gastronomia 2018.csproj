@@ -62,11 +62,23 @@
     <Compile Include="form_pedidos.Designer.cs">
       <DependentUpon>form_pedidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmbuscar_proveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmbuscar_proveedor.Designer.cs">
+      <DependentUpon>frmbuscar_proveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmcantidad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmcantidad.Designer.cs">
       <DependentUpon>frmcantidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmpagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmpagos.Designer.cs">
+      <DependentUpon>frmpagos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmproductos.cs">
       <SubType>Form</SubType>
@@ -83,8 +95,14 @@
     <EmbeddedResource Include="form_pedidos.resx">
       <DependentUpon>form_pedidos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmbuscar_proveedor.resx">
+      <DependentUpon>frmbuscar_proveedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmcantidad.resx">
       <DependentUpon>frmcantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmpagos.resx">
+      <DependentUpon>frmpagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmproductos.resx">
       <DependentUpon>frmproductos.cs</DependentUpon>
@@ -141,6 +159,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\almacenar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3floppy_mount_32x32-32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xmag_32x32-32.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

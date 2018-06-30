@@ -33,6 +33,7 @@ namespace Sistema_de_Gastronomia_2018
             lblcli.Text = "Sin Asignar...";
             MaximizeBox = false;
             lblcant.Visible = false;
+            lblstock.Visible = false;
         }
 
         private void txtcin_KeyPress(object sender, KeyPressEventArgs e)
@@ -71,6 +72,12 @@ namespace Sistema_de_Gastronomia_2018
 
         private void txtcodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == Convert.ToChar(Keys.Escape))
+            {
+                var opciones = new frmpagos();
+                opciones.ShowDialog();
+                return;
+            }
             int contador = 0;
             if (txtcodigo.Text=="000")
             {
@@ -107,14 +114,14 @@ namespace Sistema_de_Gastronomia_2018
                     return;
                 }
               //  sistema.grilla.verificar(grilla, txtcodigo);
-                sistema.producs.cargargrilla(grilla, txtcodigo,lbltotal,lbltotalticket,lbliva,lblcant);
+                sistema.producs.cargargrilla(grilla, txtcodigo,lbltotal,lbltotalticket,lbliva,lblcant,lblstock);
                 
             }
         }
 
         private void grilla_DoubleClick(object sender, EventArgs e)
         {
-            sistema.grilla.borrar_producto(grilla, lbltotal,txtcodigo,lbltotalticket,lbliva);
+            sistema.grilla.borrar_producto(grilla, lbltotal,txtcodigo,lbltotalticket,lbliva,lblstock);
            
         }
 
@@ -129,7 +136,7 @@ namespace Sistema_de_Gastronomia_2018
 
             if (e.KeyChar == Convert.ToChar(Keys.Tab))
                 {
-                    sistema.grilla.borrar_producto(grilla, lbltotal, txtcodigo, lbltotalticket, lbliva);
+                    sistema.grilla.borrar_producto(grilla, lbltotal, txtcodigo, lbltotalticket, lbliva, lblstock);
                  }
            
            
@@ -161,6 +168,9 @@ namespace Sistema_de_Gastronomia_2018
             txtcin.Enabled = true;
             txtnombre.Text = string.Empty;
             txtcin.Focus();
+            recursos.cantidades.Clear();
+            recursos.cant_oficiales.Clear();
+            recursos.descontar.Clear();
         }
     }
 }

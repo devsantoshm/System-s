@@ -13,6 +13,7 @@ namespace Sistema_de_Gastronomia_2018
     public partial class form_inicio : Form
     {
         form_pedidos pedidos = new form_pedidos();
+        funciones sistema = new funciones();
         public form_inicio()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace Sistema_de_Gastronomia_2018
             lblhora.Text = DateTime.Now.Hour.ToString() + ":";
             lblminuto.Text = DateTime.Now.Minute.ToString();
             lblsegundo.Text = DateTime.Now.Second.ToString();
-
+            sistema.incio.contador_productos(lbl_cant_pro);
 
         }
 
@@ -56,7 +57,7 @@ namespace Sistema_de_Gastronomia_2018
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmproductos pro = new frmproductos();
+            cmdcancelar pro = new cmdcancelar();
             pro.ShowDialog();
         }
 

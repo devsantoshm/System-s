@@ -63,6 +63,16 @@ namespace Sistema_de_Gastronomia_2018.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3floppy_mount_32x32_32 {
+            get {
+                object obj = ResourceManager.GetObject("3floppy_mount_32x32-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -156,6 +166,16 @@ namespace Sistema_de_Gastronomia_2018.Properties {
         internal static System.Drawing.Bitmap volver_en_el_tiempo_1_ {
             get {
                 object obj = ResourceManager.GetObject("volver-en-el-tiempo(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xmag_32x32_32 {
+            get {
+                object obj = ResourceManager.GetObject("xmag_32x32-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
