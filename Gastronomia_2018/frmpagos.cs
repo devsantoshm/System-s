@@ -26,5 +26,14 @@ namespace Sistema_de_Gastronomia_2018
 
             this.MaximizeBox = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (opciones.Text == "Pagos-Departamento de Finanzas")
+            {
+                depart_pagos pagos = new depart_pagos();
+                pagos.ShowDialog();
+            }
+        }
     }
 }

@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cotizacion.cs" />
+    <Compile Include="depart_pagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="depart_pagos.Designer.cs">
+      <DependentUpon>depart_pagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +81,12 @@
     <Compile Include="frmcantidad.Designer.cs">
       <DependentUpon>frmcantidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmlogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmlogin.Designer.cs">
+      <DependentUpon>frmlogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmpagos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,8 +100,12 @@
       <DependentUpon>frmproductos.cs</DependentUpon>
     </Compile>
     <Compile Include="funciones.cs" />
+    <Compile Include="login.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="depart_pagos.resx">
+      <DependentUpon>depart_pagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmcantidad.resx">
       <DependentUpon>frmcantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmlogin.resx">
+      <DependentUpon>frmlogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmpagos.resx">
       <DependentUpon>frmpagos.cs</DependentUpon>

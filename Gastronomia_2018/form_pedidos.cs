@@ -34,6 +34,11 @@ namespace Sistema_de_Gastronomia_2018
             MaximizeBox = false;
             lblcant.Visible = false;
             lblstock.Visible = false;
+            lbldolar.Text = recursos.dolar.ToString("###,###");
+            lblreal.Text = recursos.real.ToString("###,###");
+            lbleuro.Text = recursos.euro.ToString("###,###");
+            lblpeso.Text = recursos.peso.ToString("###,###,###");
+            lbldescripcion.Text = string.Empty;
         }
 
         private void txtcin_KeyPress(object sender, KeyPressEventArgs e)
@@ -74,6 +79,10 @@ namespace Sistema_de_Gastronomia_2018
         {
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
+                if (grilla.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay ninguna venta en curso", "Atencion Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); return;
+                }
                 var opciones = new frmpagos();
                 opciones.ShowDialog();
                 return;
@@ -111,11 +120,12 @@ namespace Sistema_de_Gastronomia_2018
                         return;
                     }
                     sistema.funcion_textbox.paso_manual(grilla, txtcodigo,lbltotal,lbltotalticket);
+                    lbldescripcion.Text = recursos.descripcion;
                     return;
                 }
               //  sistema.grilla.verificar(grilla, txtcodigo);
                 sistema.producs.cargargrilla(grilla, txtcodigo,lbltotal,lbltotalticket,lbliva,lblcant,lblstock);
-                
+                lbldescripcion.Text = recursos.descripcion;
             }
         }
 

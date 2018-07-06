@@ -31,6 +31,7 @@ namespace Sistema_de_Gastronomia_2018
         private void frmproductos_Load(object sender, EventArgs e)
         {
             this.Text = ".:. Registro de Productos .:.";
+            
         }
 
         private void textBox3_DragEnter(object sender, DragEventArgs e)

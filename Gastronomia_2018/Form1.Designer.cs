@@ -35,6 +35,7 @@
             this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invetarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblcantpedidos = new System.Windows.Forms.Label();
             this.productos_cola = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -58,7 +59,6 @@
             this.lblminuto = new System.Windows.Forms.Label();
             this.lblsegundo = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.invetarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.productos_cola.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -99,7 +99,7 @@
             this.pedidosToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.pedidosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pedidosToolStripMenuItem.Image")));
             this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
-            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.pedidosToolStripMenuItem.Text = "Pedidos";
             this.pedidosToolStripMenuItem.Click += new System.EventHandler(this.pedidosToolStripMenuItem_Click);
             // 
@@ -117,9 +117,17 @@
             this.productosToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.productosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("productosToolStripMenuItem.Image")));
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
+            // 
+            // invetarioToolStripMenuItem
+            // 
+            this.invetarioToolStripMenuItem.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.invetarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("invetarioToolStripMenuItem.Image")));
+            this.invetarioToolStripMenuItem.Name = "invetarioToolStripMenuItem";
+            this.invetarioToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.invetarioToolStripMenuItem.Text = "Invetario";
             // 
             // lblcantpedidos
             // 
@@ -377,14 +385,6 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // invetarioToolStripMenuItem
-            // 
-            this.invetarioToolStripMenuItem.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.invetarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("invetarioToolStripMenuItem.Image")));
-            this.invetarioToolStripMenuItem.Name = "invetarioToolStripMenuItem";
-            this.invetarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.invetarioToolStripMenuItem.Text = "Invetario";
-            // 
             // form_inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,6 +407,7 @@
             this.Name = "form_inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.form_inicio_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

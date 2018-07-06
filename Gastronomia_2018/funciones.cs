@@ -22,6 +22,7 @@ namespace Sistema_de_Gastronomia_2018
       public recursos iva = new recursos();
       public inventario inventory = new inventario();
       public busquedas buscar = new busquedas();
+      public login logear = new login();
       public static int codigo88 = 888;
     }
     class conexion
@@ -39,6 +40,7 @@ namespace Sistema_de_Gastronomia_2018
             {
                 cn = new SQLiteConnection("Data Source=ss".Replace("ss", @"C:/datos/sys2018.sqlite"));
                 cn.Open();
+                recursos.dbname = cn.DataSource;
                // MessageBox.Show("Conexion Establecida", "Base de datos");
             }
             catch (Exception ex)
@@ -156,7 +158,7 @@ namespace Sistema_de_Gastronomia_2018
                         grilla[3, posicion].Value = rd["pventa"].ToString();
                         this.total = double.Parse((double.Parse(rd["pventa"].ToString()) * recursos.cantidadprod).ToString());
                         grilla[4, posicion].Value = (double.Parse(grilla.Rows[posicion].Cells[4].Value.ToString())+this.total).ToString();
-                       
+                        recursos.descripcion = rd["descripcion"].ToString();
                     }
                     else
                     {
@@ -167,6 +169,7 @@ namespace Sistema_de_Gastronomia_2018
                         grilla[3, contador].Value = rd["pventa"].ToString();
                         this.total = double.Parse((double.Parse(rd["pventa"].ToString()) * recursos.cantidadprod).ToString());
                         grilla[4, contador].Value = this.total.ToString();
+                        recursos.descripcion = rd["descripcion"].ToString();
                         contador++;
                     }
                  
@@ -289,6 +292,7 @@ namespace Sistema_de_Gastronomia_2018
                 grilla[2, productos.contador].Value = cantidad.ToString();
                 grilla[3,productos.contador].Value = precio_u.ToString();
                 grilla[4,productos.contador].Value = precio_tot.ToString();
+                recursos.descripcion = descripcion.ToString();
                 texto.Text = string.Empty;
                 recursos.total_venta += precio_tot;
                 totalticket.Text = "$"+recursos.total_venta.ToString("###,###,###");
@@ -357,10 +361,12 @@ namespace Sistema_de_Gastronomia_2018
         public static string form_cant_cerro { get; set; }
         public static string cancelado = "cancelado";
         public static string realizado = "realizado";
-
         //estructura de datos para cantidad
         public static int cantidadprod = 1;
         public static string valor_asingado = string.Empty;
+        //algunas variables utiles
+        public static string descripcion { get; set; }
+        public static string dbname { get; set; }
         public  void frm_cantidad_funcion(Label cantidad)
         {
             var cantidadform = new frmcantidad();
@@ -374,6 +380,33 @@ namespace Sistema_de_Gastronomia_2018
                 cantidad.Text = cantidadprod.ToString("##,###.00");
             }
         }
+        #region Variables Cotizacion
+        public static double dolar=5700;
+        public static double real=1500;
+        public static double peso=250;
+        public static double euro=6500;
+        #endregion
+        #region pagos de ventas al contado
+        public static bool pago {get; set;}
+        public double vuelto { get; set; }
+        //validar solo numeros en textbox
+        public static void solonumeros(KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
+
     }
     class inicio_pantalla:conexion
     {

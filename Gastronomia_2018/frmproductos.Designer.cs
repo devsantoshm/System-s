@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cmdcancelar));
             this.txtcodigo = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -123,20 +123,20 @@
             // 
             this.grilla.AllowUserToAddRows = false;
             this.grilla.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Blue;
-            this.grilla.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
+            this.grilla.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -384,11 +384,10 @@
             // pexiste
             // 
             this.pexiste.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.pexiste.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pexiste.Image = ((System.Drawing.Image)(resources.GetObject("pexiste.Image")));
-            this.pexiste.Location = new System.Drawing.Point(497, 52);
+            this.pexiste.Location = new System.Drawing.Point(497, 55);
             this.pexiste.Name = "pexiste";
-            this.pexiste.Size = new System.Drawing.Size(28, 33);
+            this.pexiste.Size = new System.Drawing.Size(28, 28);
             this.pexiste.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pexiste.TabIndex = 13;
             this.pexiste.TabStop = false;
@@ -398,11 +397,10 @@
             // pbusqueda
             // 
             this.pbusqueda.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.pbusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbusqueda.Image = ((System.Drawing.Image)(resources.GetObject("pbusqueda.Image")));
-            this.pbusqueda.Location = new System.Drawing.Point(637, 110);
+            this.pbusqueda.Location = new System.Drawing.Point(639, 112);
             this.pbusqueda.Name = "pbusqueda";
-            this.pbusqueda.Size = new System.Drawing.Size(23, 21);
+            this.pbusqueda.Size = new System.Drawing.Size(19, 18);
             this.pbusqueda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbusqueda.TabIndex = 8;
             this.pbusqueda.TabStop = false;

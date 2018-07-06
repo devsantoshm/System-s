@@ -21,6 +21,8 @@ namespace Sistema_de_Gastronomia_2018
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var test = new cotizacion();
+            test.darcontizacion();
             productos_cola.Text = "Pedidos en cola";
             this.Text = ".:.Sistema de Gastronomia.:.";
             lblhora.Text = DateTime.Now.Hour.ToString() + ":";
@@ -71,6 +73,11 @@ namespace Sistema_de_Gastronomia_2018
             lblhora.Text = DateTime.Now.Hour.ToString() + ":";
             lblminuto.Text = DateTime.Now.Minute.ToString();
             lblsegundo.Text = DateTime.Now.Second.ToString();
+        }
+
+        private void form_inicio_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
