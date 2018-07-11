@@ -32,7 +32,9 @@ namespace Sistema_de_Gastronomia_2018
             if (opciones.Text == "Pagos-Departamento de Finanzas")
             {
                 depart_pagos pagos = new depart_pagos();
+                this.Close();
                 pagos.ShowDialog();
+                
             }
         }
     }

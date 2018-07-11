@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="buscar_prod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="buscar_prod.Designer.cs">
+      <DependentUpon>buscar_prod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="busquedas.cs" />
     <Compile Include="cotizacion.cs" />
     <Compile Include="depart_pagos.cs">
       <SubType>Form</SubType>
@@ -57,6 +64,7 @@
     <Compile Include="depart_pagos.Designer.cs">
       <DependentUpon>depart_pagos.cs</DependentUpon>
     </Compile>
+    <Compile Include="descuento.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,10 +107,20 @@
     <Compile Include="frmproductos.Designer.cs">
       <DependentUpon>frmproductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_descuento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_descuento.Designer.cs">
+      <DependentUpon>frm_descuento.cs</DependentUpon>
+    </Compile>
     <Compile Include="funciones.cs" />
     <Compile Include="login.cs" />
+    <Compile Include="Numero de Venta%28Funcion Clase%29\num_venta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="buscar_prod.resx">
+      <DependentUpon>buscar_prod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="depart_pagos.resx">
       <DependentUpon>depart_pagos.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmproductos.resx">
       <DependentUpon>frmproductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_descuento.resx">
+      <DependentUpon>frm_descuento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

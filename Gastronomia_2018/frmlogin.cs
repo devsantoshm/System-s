@@ -26,7 +26,8 @@ namespace Sistema_de_Gastronomia_2018
 
             sistema.basedatos.conectar();
             lbldbname.Text = recursos.dbname;
-
+            num_venta vent = new num_venta();
+            vent.conectar();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -36,6 +37,7 @@ namespace Sistema_de_Gastronomia_2018
 
         private void cmdingresar_Click(object sender, EventArgs e)
         {
+           
             //evaluamos primero si estan vacio los dos, ya que si lo evaluamos por ultimo jamas se ejecutara esta instrucción; :v
             if (string.IsNullOrEmpty(txtusuario.Text) && string.IsNullOrEmpty(txtcontraseña.Text))
             {
@@ -67,13 +69,14 @@ namespace Sistema_de_Gastronomia_2018
                 txtcontraseña.Focus();
                 return;
             }
+            
             if (sistema.logear.acceso(txtcontraseña, txtusuario))
             {
                 var log = new form_inicio();
                 log.ShowDialog();
                 this.Hide();
                 
-
+               
             }
             else
             {

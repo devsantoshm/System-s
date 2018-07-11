@@ -23,6 +23,7 @@ namespace Sistema_de_Gastronomia_2018
       public inventario inventory = new inventario();
       public busquedas buscar = new busquedas();
       public login logear = new login();
+      public num_venta ticket_num = new num_venta();
       public static int codigo88 = 888;
     }
     class conexion

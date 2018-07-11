@@ -39,6 +39,8 @@ namespace Sistema_de_Gastronomia_2018
             lbleuro.Text = recursos.euro.ToString("###,###");
             lblpeso.Text = recursos.peso.ToString("###,###,###");
             lbldescripcion.Text = string.Empty;
+            sistema.ticket_num.dar_num_ticket();
+            lblticket_num.Text = num_venta.ticket;
         }
 
         private void txtcin_KeyPress(object sender, KeyPressEventArgs e)
@@ -97,6 +99,17 @@ namespace Sistema_de_Gastronomia_2018
             }
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
+                if (string.IsNullOrEmpty(txtcodigo.Text))
+                {
+                    var productos = new buscar_prod();
+                    productos.ShowDialog();
+                    if (shaear.codigo != string.Empty)
+                    {
+                        txtcodigo.Text = shaear.codigo;
+                    }
+                    shaear.codigo = string.Empty;
+                    return;
+                }
                 bool tiene_signomas = false;
 
                 foreach (var x in txtcodigo.Text)
@@ -181,6 +194,11 @@ namespace Sistema_de_Gastronomia_2018
             recursos.cantidades.Clear();
             recursos.cant_oficiales.Clear();
             recursos.descontar.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

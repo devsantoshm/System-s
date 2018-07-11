@@ -16,7 +16,7 @@ namespace Sistema_de_Gastronomia_2018
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmlogin());
+            Application.Run(new frm_descuento());
         }
     }
 }

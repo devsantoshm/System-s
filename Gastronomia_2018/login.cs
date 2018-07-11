@@ -20,6 +20,7 @@ namespace Sistema_de_Gastronomia_2018
                 consulta = "select *from usuarios where usuario='" + usuario.Text + "'";
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
+                cmd.Dispose();
                 existe = (rd.Read()) ? true : false;
                 rd.Close();
             }
@@ -40,6 +41,7 @@ namespace Sistema_de_Gastronomia_2018
                 consulta = "select *from usuarios where usuario='" + usuario.Text + "'";
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
+                cmd.Dispose();
                 if (rd.Read())
                 {
                     if (rd["pass"].ToString() != pass.Text)
@@ -72,8 +74,9 @@ namespace Sistema_de_Gastronomia_2018
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
                 existe = (rd.Read()) ? true : false;
+                cmd.Dispose();
                 rd.Close();
-            }
+             }
             catch (Exception ex)
             {
 

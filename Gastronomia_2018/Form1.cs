@@ -29,7 +29,8 @@ namespace Sistema_de_Gastronomia_2018
             lblminuto.Text = DateTime.Now.Minute.ToString();
             lblsegundo.Text = DateTime.Now.Second.ToString();
             sistema.incio.contador_productos(lbl_cant_pro);
-
+          
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -78,6 +79,7 @@ namespace Sistema_de_Gastronomia_2018
         private void form_inicio_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+           
         }
     }
 }
