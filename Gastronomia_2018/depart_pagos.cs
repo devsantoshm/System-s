@@ -101,12 +101,14 @@ namespace Sistema_de_Gastronomia_2018
                 {
                     recursos.vuelto_venta = double.Parse(txtentrega.Text) - recursos.total_venta;
                 }
+                recursos.entrega = txtentrega.Text;
                 mensaje.AppendLine("== Gracias Por su compra Usuario ==");
                 mensaje.AppendLine(string.Format("|El Total de la Compra fue {0} Gs.|", recursos.total_venta.ToString("####,###,###")));
                 mensaje.AppendLine(string.Format("|Su Cambio es {0} Gs.|",recursos.vuelto_venta.ToString("####,###,###")));
                 mensaje.AppendLine("Gracias por su compra :)");
                 MessageBox.Show(mensaje.ToString(), "Gracias :D", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 recursos.pago = true;
+                this.Close();
 
             }
         }

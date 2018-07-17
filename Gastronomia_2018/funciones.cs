@@ -10,21 +10,21 @@ using Texto = System.Windows.Forms.TextBox;
 
 namespace Sistema_de_Gastronomia_2018
 {
-  
+
     class funciones
     {
-      public funciones_grilla grilla = new funciones_grilla();
-      public conexion basedatos = new conexion();
-      public productos producs = new productos();
+        public funciones_grilla grilla = new funciones_grilla();
+        public conexion basedatos = new conexion();
+        public productos producs = new productos();
 
-      public funciones_textbox funcion_textbox = new funciones_textbox();
-      public inicio_pantalla incio = new inicio_pantalla();
-      public recursos iva = new recursos();
-      public inventario inventory = new inventario();
-      public busquedas buscar = new busquedas();
-      public login logear = new login();
-      public num_venta ticket_num = new num_venta();
-      public static int codigo88 = 888;
+        public funciones_textbox funcion_textbox = new funciones_textbox();
+        public inicio_pantalla incio = new inicio_pantalla();
+        public recursos iva = new recursos();
+        public inventario inventory = new inventario();
+        public busquedas buscar = new busquedas();
+        public login logear = new login();
+        public num_venta ticket_num = new num_venta();
+        public static int codigo88 = 888;
     }
     class conexion
     {
@@ -35,76 +35,79 @@ namespace Sistema_de_Gastronomia_2018
         public string apellido_cliente { get; set; }
         public string numerocelular_cliente { get; set; }
         public string cin_cliente { get; set; }
-      public  void conectar()
+        public void conectar()
         {
             try
             {
-                cn = new SQLiteConnection("Data Source=ss".Replace("ss", @"C:/datos/sys2018.sqlite"));
+                cn = new SQLiteConnection("Data Source=ss".Replace("ss", @"C:/datos/sys2018.db"));
                 cn.Open();
                 recursos.dbname = cn.DataSource;
-               // MessageBox.Show("Conexion Establecida", "Base de datos");
+                // MessageBox.Show("Conexion Establecida", "Base de datos");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error En tiempo de ejecucion", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      public void desconectar()
-      {
-          cn.Close();
-      }
-      public bool consulta()
-      {
-          string consulta = string.Empty;
-          bool existe = false;
-          try
-          {
-              consulta = "Select *from clientes where cin='"+cin_cliente+"'";
-              cmd = new SQLiteCommand(consulta, cn);
-              rd = cmd.ExecuteReader();
-              if(rd.Read())
-              {
-                  nombre_cliente = rd["nombre"].ToString();
-                  apellido_cliente = rd["apellido"].ToString();
-                  numerocelular_cliente = rd["numerocelular"].ToString();
-                  existe = true;
-              }
-              else
-              {
-                  existe = false;
-              }
-          }
-         catch (Exception ex)
-          {
-              MessageBox.Show(ex.Message);
-          }
-          finally
-          {
-              rd.Close();
-          }
-          return existe;
-      }
+        public void desconectar()
+        {
+            cn.Close();
+        }
+        public bool consulta()
+        {
+            conectar();
+            string consulta = string.Empty;
+            bool existe = false;
+            try
+            {
+                consulta = "Select *from clientes where cin='" + cin_cliente + "'";
+                cmd = new SQLiteCommand(consulta, cn);
+                rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    nombre_cliente = rd["nombre"].ToString();
+                    apellido_cliente = rd["apellido"].ToString();
+                    numerocelular_cliente = rd["numerocelular"].ToString();
+                    existe = true;
+                }
+                else
+                {
+                    existe = false;
+                }
+                rd.Close();
+                desconectar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            
+            }
+            return existe;
+        }
     }
     class productos : conexion
     {
         public double total { get; set; }
         public static int contador { get; set; }
-        public void modificar_stock_memoria(Grilla grilla, ref Dictionary<string, int> diccionario,int cantidad,string codigo)
+        public void modificar_stock_memoria(Grilla grilla, ref Dictionary<string, int> diccionario, int cantidad, string codigo)
         {
             Dictionary<string, int> retornado = new Dictionary<string, int>(diccionario);
             for (int i = 0; i < grilla.Rows.Count; i++)
             {
-               
-                    if (grilla[1,i].Value.ToString() == codigo)
-                    {
-                        diccionario[codigo] = cantidad - int.Parse(grilla[2, i].Value.ToString());
-                        MessageBox.Show("La Nueva Cantidad es: " + diccionario[codigo].ToString(), "Info :D");
-                    }
-             
+
+                if (grilla[1, i].Value.ToString() == codigo)
+                {
+                    diccionario[codigo] = cantidad - int.Parse(grilla[2, i].Value.ToString());
+                    MessageBox.Show("La Nueva Cantidad es: " + diccionario[codigo].ToString(), "Info :D");
+                }
+
             }
-            
+
         }
-        public void cargargrilla(Grilla grilla, TextBox codigo, Label lbltotal, Label lbltotalticket, Label lbliva, Label cantidad,Label stock)
+        public void cargargrilla(Grilla grilla, TextBox codigo, Label lbltotal, Label lbltotalticket, Label lbliva, Label cantidad, Label stock)
         {
             conectar();
             string consulta;
@@ -127,14 +130,15 @@ namespace Sistema_de_Gastronomia_2018
                         MessageBox.Show(string.Format("Se ha modificado el stock\n Cantidad Anterior: {0} \n Cantidad Actual: {1} \n Como Consecuencia se modificara el stock en cola(memoria)", recursos.cant_oficiales[codigo.Text].ToString(), rd["stock"].ToString()), "Atencion Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         recursos.cant_oficiales[codigo.Text] = int.Parse(rd["stock"].ToString());
                         modificar_stock_memoria(grilla, ref recursos.cantidades, int.Parse(rd["stock"].ToString()), codigo.Text);
-                       MessageBox.Show(recursos.cantidades[codigo.Text].ToString());
-                        
+                        MessageBox.Show(recursos.cantidades[codigo.Text].ToString());
+
                     }
                     if (!recursos.cantidades.ContainsKey(codigo.Text))
                     {
                         recursos.cantidades.Add(codigo.Text, int.Parse(rd["stock"].ToString()));
                     }
-                    if ((recursos.cantidades[codigo.Text]-recursos.cantidadprod)<=int.Parse(rd["minimo"].ToString())){
+                    if ((recursos.cantidades[codigo.Text] - recursos.cantidadprod) <= int.Parse(rd["minimo"].ToString()))
+                    {
                         MessageBox.Show("Stock Insuficiente");
                         return;
                     }
@@ -158,7 +162,7 @@ namespace Sistema_de_Gastronomia_2018
                         grilla[2, posicion].Value = (int.Parse(grilla.Rows[posicion].Cells[2].Value.ToString()) + recursos.cantidadprod).ToString();
                         grilla[3, posicion].Value = rd["pventa"].ToString();
                         this.total = double.Parse((double.Parse(rd["pventa"].ToString()) * recursos.cantidadprod).ToString());
-                        grilla[4, posicion].Value = (double.Parse(grilla.Rows[posicion].Cells[4].Value.ToString())+this.total).ToString();
+                        grilla[4, posicion].Value = (double.Parse(grilla.Rows[posicion].Cells[4].Value.ToString()) + this.total).ToString();
                         recursos.descripcion = rd["descripcion"].ToString();
                     }
                     else
@@ -173,25 +177,26 @@ namespace Sistema_de_Gastronomia_2018
                         recursos.descripcion = rd["descripcion"].ToString();
                         contador++;
                     }
-                 
+
                     recursos.total_venta += total;
+                    recursos.sin_descuento += total;
                     stock.Visible = true;
                     stock.Text = "La cantidad en stock es: " + recursos.cantidades[codigo.Text].ToString();
                     codigo.Text = string.Empty;
-                 //   var pedidos_form = new form_pedidos();
+                    //   var pedidos_form = new form_pedidos();
                     lbltotal.Text = "$" + recursos.total_venta.ToString("###,###,###");
                     lbltotalticket.Text = "$" + recursos.total_venta.ToString("###,###,###");
                     var cal_iva = new recursos();
                     recursos.iva_venta += cal_iva.iva(total, 5);
-                    lbliva.Text = "$"+recursos.iva_venta.ToString("###,###,###");
+                    lbliva.Text = "$" + recursos.iva_venta.ToString("###,###,###");
                     recursos.cantidadprod = 1;
                     if (cantidad.Visible)
                     {
                         cantidad.Visible = false;
                     }
                     codigo.Focus();
-                  
-                    
+
+
                 }
                 else
                 {
@@ -213,12 +218,13 @@ namespace Sistema_de_Gastronomia_2018
     class funciones_grilla
     {
         double valordescontar = 0;
-      
-        public void borrar_producto(DataGridView grilla, Label total,TextBox codigo,Label totalticket,Label iva,Label stock)
+
+        public void borrar_producto(DataGridView grilla, Label total, TextBox codigo, Label totalticket, Label iva, Label stock)
         {
-            try {
+            try
+            {
                 valordescontar = double.Parse(grilla.Rows[grilla.CurrentRow.Index].Cells[4].Value.ToString());
-               
+
                 DialogResult resulta = MessageBox.Show("Desea eliminar el elemento?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (resulta == DialogResult.Yes)
                 {
@@ -239,35 +245,37 @@ namespace Sistema_de_Gastronomia_2018
                         recursos.total_venta = 0;
                         total.Text = "$0";
                         totalticket.Text = "$" + recursos.total_venta.ToString("###,###,###");
-                        
+
                         iva.Text = "$" + "0";
                     }
-                    else {
+                    else
+                    {
                         totalticket.Text = "$" + recursos.total_venta.ToString("###,###,###");
-                    total.Text = "$"+recursos.total_venta.ToString("###,###,###");
-                    iva.Text = "$" + recursos.iva_venta.ToString("###,###,###");
+                        total.Text = "$" + recursos.total_venta.ToString("###,###,###");
+                        iva.Text = "$" + recursos.iva_venta.ToString("###,###,###");
                     }
                     codigo.Focus();
                 }
-             }
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Atencion",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message, "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
-    class funciones_textbox:conexion
+    class funciones_textbox : conexion
     {
         public void paso_manual(DataGridView grilla, TextBox texto, Label total, Label totalticket)
         {
             try
-           {
-                string descripcion="";
-                int cantidad=0;
-                double precio_u=0;
-                double precio_tot=0;
-                int contador=0;                
-                foreach(var x in texto.Text.Split(Convert.ToChar("+"))) {
+            {
+                string descripcion = "";
+                int cantidad = 0;
+                double precio_u = 0;
+                double precio_tot = 0;
+                int contador = 0;
+                foreach (var x in texto.Text.Split(Convert.ToChar("+")))
+                {
                     contador++;
                     switch (contador)
                     {
@@ -276,31 +284,31 @@ namespace Sistema_de_Gastronomia_2018
                             break;
                         case 2:
                             cantidad = int.Parse(x);
-                            
+
                             break;
                         case 3:
                             precio_u = double.Parse(x.ToString());
                             goto preciotot;
                         case 4:
-                            preciotot:
+                        preciotot:
                             precio_tot = precio_u * cantidad;
                             break;
                     }
                 }
                 grilla.Rows.Add();
-                grilla[0,productos.contador].Value = descripcion.ToString();
+                grilla[0, productos.contador].Value = descripcion.ToString();
                 grilla[1, productos.contador].Value = funciones.codigo88.ToString();
                 grilla[2, productos.contador].Value = cantidad.ToString();
-                grilla[3,productos.contador].Value = precio_u.ToString();
-                grilla[4,productos.contador].Value = precio_tot.ToString();
+                grilla[3, productos.contador].Value = precio_u.ToString();
+                grilla[4, productos.contador].Value = precio_tot.ToString();
                 recursos.descripcion = descripcion.ToString();
                 texto.Text = string.Empty;
                 recursos.total_venta += precio_tot;
-                totalticket.Text = "$"+recursos.total_venta.ToString("###,###,###");
-                total.Text = "$"+recursos.total_venta.ToString("###,###,###");
+                totalticket.Text = "$" + recursos.total_venta.ToString("###,###,###");
+                total.Text = "$" + recursos.total_venta.ToString("###,###,###");
                 productos.contador++;
-           }
-          catch (Exception ex)
+            }
+            catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
@@ -313,7 +321,7 @@ namespace Sistema_de_Gastronomia_2018
             try
             {
                 conectar();
-                consulta = "select *from productos where codigo= '"+"888"+ "'";
+                consulta = "select *from productos where codigo= '" + "888" + "'";
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
                 if (rd.Read())
@@ -346,6 +354,7 @@ namespace Sistema_de_Gastronomia_2018
         public static Dictionary<string, int> descontar = new Dictionary<string, int>();
         public static Dictionary<string, int> cant_oficiales = new Dictionary<string, int>();
         public static double total_venta { get; set; }
+        public static double sin_descuento { get; set; }
         public static double vuelto_venta { get; set; }
         public static double iva_venta { get; set; }
         public Func<double, int, double> iva = (valor, porciento) => { 
@@ -362,6 +371,10 @@ namespace Sistema_de_Gastronomia_2018
         public static string form_cant_cerro { get; set; }
         public static string cancelado = "cancelado";
         public static string realizado = "realizado";
+        public static bool descuento = false;
+        public static bool descontado = false;
+        public static string entrega = "";
+        public static List<string> descontados = new List<string>();
         //estructura de datos para cantidad
         public static int cantidadprod = 1;
         public static string valor_asingado = string.Empty;
@@ -381,6 +394,7 @@ namespace Sistema_de_Gastronomia_2018
                 cantidad.Text = cantidadprod.ToString("##,###.00");
             }
         }
+        public static bool vendio = false;
         #region Variables Cotizacion
         public static double dolar=5700;
         public static double real=1500;
@@ -409,7 +423,7 @@ namespace Sistema_de_Gastronomia_2018
         #endregion
 
     }
-    class inicio_pantalla:conexion
+    class inicio_pantalla : conexion
     {
         public void contador_productos(Label texto)
         {
@@ -454,7 +468,7 @@ namespace Sistema_de_Gastronomia_2018
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-               
+
             }
             return existe;
         }
@@ -470,22 +484,22 @@ namespace Sistema_de_Gastronomia_2018
             string codigo;
             int stock;
             int minimo;
-            int contador=0;
+            int contador = 0;
             try
             {
-                
+
                 conectar();
                 for (int i = 0; i < grilla.Rows.Count; i++)
                 {
                     descripcion = grilla.Rows[i].Cells[0].Value.ToString();
-                    pcompra=double.Parse(grilla.Rows[i].Cells[1].Value.ToString());
+                    pcompra = double.Parse(grilla.Rows[i].Cells[1].Value.ToString());
                     pventa = double.Parse(grilla.Rows[i].Cells[2].Value.ToString());
                     pmayorista = double.Parse(grilla.Rows[i].Cells[3].Value.ToString());
                     proveedor = grilla.Rows[i].Cells[4].Value.ToString();
                     codigo = grilla.Rows[i].Cells[5].Value.ToString();
                     stock = int.Parse(grilla.Rows[i].Cells[6].Value.ToString());
                     minimo = int.Parse(grilla.Rows[i].Cells[7].Value.ToString());
-                    consulta = "insert into productos (descripcion,pcompra,pventa,pmayorista,proveedor,codigo,stock,minimo) values ('" + descripcion + "'," + pcompra + "," + pventa + "," + pmayorista + ",'" + proveedor + "','"+codigo+"'," + stock + "," + minimo + ")";
+                    consulta = "insert into productos (descripcion,pcompra,pventa,pmayorista,proveedor,codigo,stock,minimo) values ('" + descripcion + "'," + pcompra + "," + pventa + "," + pmayorista + ",'" + proveedor + "','" + codigo + "'," + stock + "," + minimo + ")";
                     cmd = new SQLiteCommand(consulta, cn);
                     cmd.ExecuteNonQuery();
                     contador++;
@@ -511,16 +525,17 @@ namespace Sistema_de_Gastronomia_2018
             try
             {
                 conectar();
-                cmd= new SQLiteCommand("select *from proveedores",cn);
-                rd=cmd.ExecuteReader();
-                while(rd.Read()){
-                grilla.Rows.Add();
-                grilla[0, contador].Value = rd["nombre"].ToString();
-                grilla[1, contador].Value = rd["ruc"].ToString();
-                grilla[2, contador].Value = rd["direccion"].ToString();
-                grilla[3, contador].Value = rd["telefono"].ToString();
-                grilla[4, contador].Value = rd["correo"].ToString();
-                contador++;
+                cmd = new SQLiteCommand("select *from proveedores", cn);
+                rd = cmd.ExecuteReader();
+                while (rd.Read())
+                {
+                    grilla.Rows.Add();
+                    grilla[0, contador].Value = rd["nombre"].ToString();
+                    grilla[1, contador].Value = rd["ruc"].ToString();
+                    grilla[2, contador].Value = rd["direccion"].ToString();
+                    grilla[3, contador].Value = rd["telefono"].ToString();
+                    grilla[4, contador].Value = rd["correo"].ToString();
+                    contador++;
                 }
                 rd.Close();
             }
@@ -536,22 +551,22 @@ namespace Sistema_de_Gastronomia_2018
             try
             {
                 conectar();
-                consulta="select *from proveedores where nombre like '%"+texto.Text+"%'";
+                consulta = "select *from proveedores where nombre like '%" + texto.Text + "%'";
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
                 grilla.Rows.Clear();
-                    while (rd.Read())
-                    {
-                        
-                        grilla.Rows.Add();
-                        grilla[0, contador].Value = rd["nombre"].ToString();
-                        grilla[1, contador].Value = rd["ruc"].ToString();
-                        grilla[2, contador].Value = rd["direccion"].ToString();
-                        grilla[3, contador].Value = rd["telefono"].ToString();
-                        grilla[4, contador].Value = rd["correo"].ToString();
-                        contador++;
-                    }
-                    rd.Close();
+                while (rd.Read())
+                {
+
+                    grilla.Rows.Add();
+                    grilla[0, contador].Value = rd["nombre"].ToString();
+                    grilla[1, contador].Value = rd["ruc"].ToString();
+                    grilla[2, contador].Value = rd["direccion"].ToString();
+                    grilla[3, contador].Value = rd["telefono"].ToString();
+                    grilla[4, contador].Value = rd["correo"].ToString();
+                    contador++;
+                }
+                rd.Close();
             }
             catch (Exception ex)
             {

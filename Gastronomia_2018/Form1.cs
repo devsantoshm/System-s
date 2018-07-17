@@ -21,6 +21,9 @@ namespace Sistema_de_Gastronomia_2018
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+           // var test = new cotizacion();
+
             var test = new cotizacion();
             test.darcontizacion();
             productos_cola.Text = "Pedidos en cola";
@@ -30,6 +33,7 @@ namespace Sistema_de_Gastronomia_2018
             lblsegundo.Text = DateTime.Now.Second.ToString();
             sistema.incio.contador_productos(lbl_cant_pro);
           
+            
            
         }
 

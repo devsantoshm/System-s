@@ -19,7 +19,7 @@ namespace Sistema_de_Gastronomia_2018
         funciones sistema = new funciones();
         private void form_pedidos_Load(object sender, EventArgs e)
         {
-           sistema.basedatos.conectar();
+           
             txtcelular.Enabled = false;
             txtnombre.Enabled = false;
             txtcodigo.Enabled = false;
@@ -87,6 +87,77 @@ namespace Sistema_de_Gastronomia_2018
                 }
                 var opciones = new frmpagos();
                 opciones.ShowDialog();
+                if (recursos.pago == true)
+                {
+                    var ticket = new Ticket();
+                    ticket.TextoCentro("Supermercado de Prueba");
+                    ticket.textoizquieda(string.Format("Hora: {0}", DateTime.Now.ToShortTimeString()));
+                    ticket.textoizquieda(string.Format("Fecha: {0}", DateTime.Now.ToShortDateString()));
+                    ticket.textoizquieda(string.Format("Ticket #{0}", num_venta.ticket));
+                    ticket.textoizquieda("Direccion: Dr. Raul Peña, Alto Parana");
+                    ticket.textoizquieda("Telefono Numero:0994996935");
+                    ticket.lineasasterisco();
+                    ticket.textoizquieda("   Venta al Contado");
+                    ticket.lineasigual();
+                    ticket.encabezado();
+                    foreach (DataGridViewRow filas in grilla.Rows)
+                    {
+                        articulos_ticket.descripcion = filas.Cells[0].Value.ToString();
+                        articulos_ticket.cantidad = int.Parse(filas.Cells[2].Value.ToString());
+                        articulos_ticket.precio = decimal.Parse(filas.Cells[3].Value.ToString());
+                        articulos_ticket.importe = decimal.Parse(filas.Cells[4].Value.ToString());
+                        ticket.AgregaArticulo(articulos_ticket.descripcion, articulos_ticket.cantidad, articulos_ticket.precio, articulos_ticket.importe);
+                    }
+                    ticket.lineasigual();
+                    ticket.agregartotales("Total de Venta Gs.",decimal.Parse(recursos.total_venta.ToString()));
+                    if (recursos.descontado)
+                    {
+                        ticket.agregartotales("Tota sin descuento Gs.", decimal.Parse(recursos.sin_descuento.ToString()));
+                        ticket.agregartotales("Total con descuento Gs.", decimal.Parse(recursos.total_venta.ToString()));
+                        ticket.textoizquieda("Ahorrado Gs." + descuento.ahorra_total.ToString("###,####,####"));
+                        recursos.descontado = false;
+                        recursos.descontados.Clear();
+                    }
+                    else
+                    {
+                  //      ticket.agregartotales("Total con descuento Gs.", decimal.Parse(recursos.total_venta.ToString()));
+                    }
+                    ticket.agregartotales("Entrega Gs.",decimal.Parse(recursos.entrega.ToString()));
+                    ticket.agregartotales("Vuelvo  Gs.", decimal.Parse(recursos.vuelto_venta.ToString()));
+                    ticket.agregartotales("Iva 5% Gs.", decimal.Parse(recursos.iva_venta.ToString()));
+                    ticket.lineasasterisco();
+                    ticket.TextoCentro("Gracias por su compra");
+                    ticket.ImprimirTicket("Microsoft XPS Document Writer");
+                    lblultimovuelto.Text = recursos.vuelto_venta.ToString("###,###,###");
+                    recursos.total_venta = 0;
+                    recursos.iva_venta = 0;
+                    recursos.sin_descuento = 0;
+                    recursos.vuelto_venta = 0;
+                    recursos.entrega = "";
+                    grilla.Rows.Clear();
+                    productos.contador = 0;
+                    var n = new num_venta();
+                    n.actualizar_num_venta();
+                    lbltotal.Text = "0";
+                    lblcant.Text = "";
+                    lblcli.Text = "";
+                    lblcliente.Text = "";
+                    lblnumventa.Text = num_venta.ticket;
+                    lblticket_num.Text = "";
+                    lbliva.Text = "0";
+                    txtcelular.Text = "";
+                    txtcin.Enabled = true;
+                    txtcin.Focus();
+                    txtnombre.Text = "";
+                    txtcin.Text = "";
+                    lbltotal.Text = "0";
+                 //   recursos.descontados.Clear();
+                 //   var num = new num_venta();
+             //       num.conectar();
+                   
+                   
+                    recursos.pago = false;
+                }
                 return;
             }
             int contador = 0;
@@ -198,7 +269,47 @@ namespace Sistema_de_Gastronomia_2018
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (recursos.descontados.Contains(grilla.Rows[grilla.CurrentRow.Index].Cells[1].Value.ToString()))
+                {
+                    MessageBox.Show("Ya Se ha Aplicado un Descuento a este producto", "Atencion Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                descuento.descripcion = grilla.Rows[grilla.CurrentRow.Index].Cells[0].Value.ToString();
+                descuento.valor_prod = double.Parse(grilla.Rows[grilla.CurrentRow.Index].Cells[3].Value.ToString());
+                descuento.valor_total = double.Parse(grilla.Rows[grilla.CurrentRow.Index].Cells[4].Value.ToString());
+                descuento.cantidad = int.Parse(grilla.Rows[grilla.CurrentRow.Index].Cells[2].Value.ToString());
+                descuento.posicion = grilla.CurrentRow.Index;
+                descuento.codigo = grilla.Rows[grilla.CurrentRow.Index].Cells[1].Value.ToString();
+                frm_descuento frmdesc = new frm_descuento();
+                frmdesc.ShowDialog();
+                if (recursos.descuento)
+                {
+                    recursos.descontado = true;
+                    recursos.descontados.Add(descuento.codigo);
+                    grilla[4, descuento.posicion].Value = descuento.nuevo_total.ToString();
+                    recursos.total_venta = 0;
+                    for (int i = 0; i < grilla.Rows.Count; i++)
+                    {
+                        recursos.total_venta += double.Parse(grilla.Rows[i].Cells[4].Value.ToString());
+                    }
+                    descuento.limpiar();
+                    lbltotal.Text = recursos.total_venta.ToString("###,###,###");
+                    recursos.descuento = false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Ocurrio un Error", "Atencion Usuaio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+        }
+
+        private void txtcin_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

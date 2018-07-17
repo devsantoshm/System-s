@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Sistema_de_Gastronomia_2018
 {
-    class num_venta:conexion
+    class num_venta : conexion
     {
 
         public static string ticket = string.Empty;
@@ -16,18 +16,18 @@ namespace Sistema_de_Gastronomia_2018
         public void actualizar_num_venta()
         {
             string consulta = string.Empty;
-          try
-           {
+            try
+            {
                 //cmd.Dispose();
                 conectar();
                 consulta = "update num_tickets set num_venta=num_venta+3";
                 cmd = new SQLiteCommand(consulta, cn);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Hecho :D");  
-              desconectar();
-                
+              
+                desconectar();
 
-          }
+
+            }
             catch (Exception ex)
             {
 
@@ -47,7 +47,7 @@ namespace Sistema_de_Gastronomia_2018
                 rd.Close();
                 desconectar();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);

@@ -55,6 +55,7 @@ namespace Sistema_de_Gastronomia_2018
 
         private void txtcantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
+            recursos.solonumeros(e);
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
                 cmdcantidad.PerformClick();

@@ -7,22 +7,22 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 namespace Sistema_de_Gastronomia_2018
 {
-    class cotizacion:conexion
+    class cotizacion : conexion
     {
         public void darcontizacion()
         {
-            DateTime time= DateTime.Now;
+            DateTime time = DateTime.Now;
             string fecha = time.ToString("yyyy-MM-dd").Substring(0, 10);
             string consulta;
             try
             {
                 conectar();
-                consulta = "select *from valores_moneda where fecha='"+fecha+"'";
+                consulta = "select *from valores_moneda where fecha='" + fecha + "'";
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
                 if (!rd.Read())
                 {
-                    MessageBox.Show("No Tenemos Cotizaciones para esta fecha \n favor asignelo en Ajustes -> Cotizaciones","Atencion Usuario",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    MessageBox.Show("No Tenemos Cotizaciones para esta fecha \n favor asignelo en Ajustes -> Cotizaciones", "Atencion Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     rd.Close();
                 }
                 else
@@ -37,7 +37,7 @@ namespace Sistema_de_Gastronomia_2018
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: \n Detalles: " + ex.Message,"Error");
+                MessageBox.Show("Error: \n Detalles: " + ex.Message, "Error");
             }
         }
     }

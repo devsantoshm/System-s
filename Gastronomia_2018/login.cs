@@ -8,28 +8,29 @@ using System.Windows.Forms;
 using Texto = System.Windows.Forms.TextBox;
 namespace Sistema_de_Gastronomia_2018
 {
-    class login:conexion
+    class login : conexion
     {
         public bool existe_usuario(Texto usuario)
         {
-            bool existe=false;
+            bool existe = false;
             string consulta;
-            try
-            {
-                conectar();
+          //  try
+       //     {
+               conectar();
                 consulta = "select *from usuarios where usuario='" + usuario.Text + "'";
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
                 cmd.Dispose();
                 existe = (rd.Read()) ? true : false;
                 rd.Close();
-            }
-            catch (Exception ex)
+            //    desconectar();
+         //   }
+      /*      catch (Exception ex)
             {
 
                 MessageBox.Show("Ocurrio un Error en tiempo de ejecución", "Atención Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
+            }*/
             return existe;
         }
         public bool verificar_pass(Texto usuario, Texto pass)
@@ -59,7 +60,7 @@ namespace Sistema_de_Gastronomia_2018
             {
 
                 MessageBox.Show(ex.Message);
-                
+
             }
             return es_incorrecto;
         }
@@ -76,7 +77,8 @@ namespace Sistema_de_Gastronomia_2018
                 existe = (rd.Read()) ? true : false;
                 cmd.Dispose();
                 rd.Close();
-             }
+                desconectar();
+            }
             catch (Exception ex)
             {
 
@@ -87,5 +89,6 @@ namespace Sistema_de_Gastronomia_2018
         }
     }
 }
+
 
 

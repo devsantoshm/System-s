@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form_pedidos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form_pedidos));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtcelular = new System.Windows.Forms.TextBox();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -96,7 +97,6 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lbldescripcion = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -136,6 +136,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1050, 43);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(816, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 40);
+            this.button1.TabIndex = 16;
+            this.button1.Text = " Aplicar \r\n  Descuento";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label4
             // 
@@ -219,6 +233,7 @@
             this.txtcin.Name = "txtcin";
             this.txtcin.Size = new System.Drawing.Size(102, 20);
             this.txtcin.TabIndex = 9;
+            this.txtcin.TextChanged += new System.EventHandler(this.txtcin_TextChanged);
             this.txtcin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcin_KeyPress);
             // 
             // pictureBox1
@@ -801,20 +816,6 @@
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(372, 58);
             this.panel16.TabIndex = 10;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(816, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 40);
-            this.button1.TabIndex = 16;
-            this.button1.Text = " Aplicar \r\n  Descuento";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // form_pedidos
             // 

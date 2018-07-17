@@ -17,3 +17,4 @@ C:\Users\OSCAR GOMEZ\Documents\Visual Studio 2013\Projects\Sistema de Gastronomi
 C:\Users\OSCAR GOMEZ\Documents\Visual Studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.frmlogin.resources
 C:\Users\OSCAR GOMEZ\Documents\Visual Studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.buscar_prod.resources
 C:\Users\OSCAR GOMEZ\Documents\Visual Studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.frm_descuento.resources
+C:\Users\OSCAR GOMEZ\Documents\Visual Studio 2013\Projects\Sistema de Gastronomia 2018\Sistema de Gastronomia 2018\obj\Debug\Sistema_de_Gastronomia_2018.ticket_preview.resources

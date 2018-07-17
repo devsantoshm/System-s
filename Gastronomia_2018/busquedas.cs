@@ -16,12 +16,13 @@ namespace Sistema_de_Gastronomia_2018
         public static string codigo { get; set; }
         public void buscar_producto(Grilla grilla, Texto buscar)
         {
+            conectar();
             string consulta;
             var prod = new List<producto>();
             try
             {
                 consulta = "select *from productos";
-                conectar();
+
                 cmd = new SQLiteCommand(consulta, cn);
                 rd = cmd.ExecuteReader();
                 while (rd.Read())
@@ -29,12 +30,12 @@ namespace Sistema_de_Gastronomia_2018
                     prod.Add(new producto() {
                         descripcion = rd["descripcion"].ToString().ToLower(),
                     codigo = rd["codigo"].ToString().ToLower(),
-                    precio = double.Parse(rd["pcompra"].ToString()).ToString("####,###,###"),
+                    precio = double.Parse(rd["pventa"].ToString()).ToString("####,###,###"),
                     cantidad = rd["stock"].ToString().ToLower()
                     });
                 }
                 rd.Close();
-                desconectar();
+               
                 IEnumerable<producto> valores = from p in prod
                                                 where p.descripcion.Contains(buscar.Text.Trim().ToLower())
                                                 select p;
@@ -54,9 +55,10 @@ namespace Sistema_de_Gastronomia_2018
             }
             catch (Exception ex)
             {
-                
-                
+
+
             }
+            finally { desconectar(); }
         }
 
         class producto
